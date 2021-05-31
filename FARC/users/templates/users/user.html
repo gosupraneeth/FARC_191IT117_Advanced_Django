@@ -22,6 +22,94 @@
         width: 250px;
     }
 </style>
+<script>
+        var empty;
+        var drag;
+        function addingevent(){
+            document.querySelectorAll(".drag").forEach((d) => {
+                d.addEventListener("dragstart", dragStart);
+                d.addEventListener("dragend", dragEnd);
+            });
+        }
+        document.addEventListener('dragstart',()=>{
+            document.querySelectorAll(".drag").forEach((d) => {
+                d.addEventListener("dragstart", dragStart);
+                d.addEventListener("dragend", dragEnd);
+            });
+        });
+        document.addEventListener('DOMContentLoaded',()=>{
+            empty = document.querySelectorAll(".empty");
+            document.querySelectorAll(".drag").forEach((d)=>{
+                d.addEventListener("dragstart", dragStart);
+                d.addEventListener("dragend", dragEnd);
+            });
+            for (var item of empty) {
+                item.addEventListener("dragover", dragOver);
+                item.addEventListener("dragenter", dragEnter);
+                item.addEventListener("dragleave", dragLeave);
+                item.addEventListener("drop", dragDrop);
+            }
+        });
+
+        // requestAnimationFrame - подменяет стиль на прозрачный. работает с частотой 60fps
+        function dragStart(event) {
+            console.log("start");
+            drag =this;
+            this.style.backgroundColor = "green";
+            requestAnimationFrame(() => (this.style.backgroundColor = "transparent"), 0);
+        }
+
+        function dragEnd() {
+            console.log("end");
+            this.style.backgroundColor = "red";
+        }
+
+
+        // dragOver срабатывает всё время
+        // preventDefault - обязательно! Сбрасывает стандартные обработчики браузера
+        function dragOver() {
+            event.preventDefault();
+        }
+
+        // dragEnter срабатывает над объектом один раз
+        function dragEnter() {
+            this.style.backgroundColor = "gray";
+        }
+
+        // dragLeave срабатывает после ухода
+        function dragLeave() {
+            this.style.backgroundColor = "#eee";
+        }
+
+        // drop срабатывает после того, как перетаскиваемый объект опустится на блок
+        function dragDrop() {
+            console.log("drop");
+            this.append(drag);
+        }
+
+</script>
+<script>
+    function formtable(){
+        var rows = document.getElementById('row').value;
+        var cols = document.getElementById('column').value;
+
+    }
+    function gentabs(){
+        var course = document.querySelector('#course').value;
+        var credits = document.querySelector('#credits').value;
+        var div = document.querySelector('.dragtabs');
+        div.innerHTML='';
+        for(i=0;i<credits;i++){
+            var c = document.createElement('div');
+            c.classList.add('drag');
+            c.setAttribute('draggable','true');
+            c.innerHTML = course;
+            div.appendChild(c);
+        }
+        addingevent();
+        return false;
+    }
+</script>
 {% endblock %}
 
 {% block body %}
@@ -77,70 +165,178 @@
         </div>
     </div>
 </nav>
-<section style="margin-top: 58px; text-align: center; align-items: center;">
-    <div id="table">
-        <table>
+<section style="margin-top: 58px; text-align: center; display: inline-flex; flex-direction: column; width: 100%;">
+    <center>
+        <div id="table" style="text-align: center;">
+            <table>
                 <tr>
-                    <th>Period1</th>
-                    <th>Period1</th>
-                    <th>Peroid</th>
-                    <th>Peroid</th>
-                    <th>Peroid</th>
-                    <th>Peroid</th>
-                    <th>Peroid</th>
-                    <th>Peroid</th>
+                    <th>Period</th>
+                    <th>Period</th>
+                    <th>Period</th>
+                    <th>Period</th>
+                    <th>Period</th>
+                    <th>Period</th>
+                    <th>Period</th>
+                    <th>Period</th>
+                    <th>Period</th>
                 </tr>
                 <tr>
-                    <td>Maths</td>
-                    <td>Maths</td>
-                    <td>Maths</td>
-                    <td>Maths</td>
-                    <td>Maths</td>
-                    <td>Maths</td>
-                    <td>Maths</td>
-                    <td>Maths</td>
+                    <th>
+                        <div class="empty"></div>
+                    </th>
+                    <td>
+                        <div class="empty"></div>
+                    </td>
+                    <td>
+                        <div class="empty"></div>
+                    </td>
+                    <td>
+                        <div class="empty"></div>
+                    </td>
+                    <td>
+                        <div class="empty"></div>
+                    </td>
+                    <td>
+                        <div class="empty"></div>
+                    </td>
+                    <td>
+                        <div class="empty"></div>
+                    </td>
+                    <td>
+                        <div class="empty"></div>
+                    </td>
+                    <td>
+                        <div class="empty"></div>
+                    </td>
                 </tr>
                 <tr>
-                    <td>Maths</td>
-                    <td>Maths</td>
-                    <td>Maths</td>
-                    <td>Maths</td>
-                    <td>Maths</td>
-                    <td>Maths</td>
-                    <td>Maths</td>
-                    <td>Maths</td>
+                    <th>
+                        <div class="empty"></div>
+                    </th>
+                    <td>
+                        <div class="empty"></div>
+                    </td>
+                    <td>
+                        <div class="empty"></div>
+                    </td>
+                    <td>
+                        <div class="empty"></div>
+                    </td>
+                    <td>
+                        <div class="empty"></div>
+                    </td>
+                    <td>
+                        <div class="empty"></div>
+                    </td>
+                    <td>
+                        <div class="empty"></div>
+                    </td>
+                    <td>
+                        <div class="empty"></div>
+                    </td>
+                    <td>
+                        <div class="empty"></div>
+                    </td>
                 </tr>
                 <tr>
-                    <td>Maths</td>
-                    <td>Maths</td>
-                    <td>Maths</td>
-                    <td>Maths</td>
-                    <td>Maths</td>
-                    <td>Maths</td>
-                    <td>Maths</td>
-                    <td>Maths</td>
+                    <th>
+                        <div class="empty"></div>
+                    </th>
+                    <td>
+                        <div class="empty"></div>
+                    </td>
+                    <td>
+                        <div class="empty"></div>
+                    </td>
+                    <td>
+                        <div class="empty"></div>
+                    </td>
+                    <td>
+                        <div class="empty"></div>
+                    </td>
+                    <td>
+                        <div class="empty"></div>
+                    </td>
+                    <td>
+                        <div class="empty"></div>
+                    </td>
+                    <td>
+                        <div class="empty"></div>
+                    </td>
+                    <td>
+                        <div class="empty"></div>
+                    </td>
                 </tr>
                 <tr>
-                    <td>Maths</td>
-                    <td>Maths</td>
-                    <td>Maths</td>
-                    <td>Maths</td>
-                    <td>Maths</td>
-                    <td>Maths</td>
-                    <td>Maths</td>
-                    <td>Maths</td>
+                    <th>
+                        <div class="empty"></div>
+                    </th>
+                    <td>
+                        <div class="empty"></div>
+                    </td>
+                    <td>
+                        <div class="empty"></div>
+                    </td>
+                    <td>
+                        <div class="empty"></div>
+                    </td>
+                    <td>
+                        <div class="empty"></div>
+                    </td>
+                    <td>
+                        <div class="empty"></div>
+                    </td>
+                    <td>
+                        <div class="empty"></div>
+                    </td>
+                    <td>
+                        <div class="empty"></div>
+                    </td>
+                    <td>
+                        <div class="empty"></div>
+                    </td>
                 </tr>
                 <tr>
-                    <td>Maths</td>
-                    <td>Maths</td>
-                    <td>Maths</td>
-                    <td>Maths</td>
-                    <td>Maths</td>
-                    <td>Maths</td>
-                    <td>Maths</td>
-                    <td>Maths</td>
+                    <th>
+                        <div class="empty"></div>
+                    </th>
+                    <td>
+                        <div class="empty"></div>
+                    </td>
+                    <td>
+                        <div class="empty"></div>
+                    </td>
+                    <td>
+                        <div class="empty"></div>
+                    </td>
+                    <td>
+                        <div class="empty"></div>
+                    </td>
+                    <td>
+                        <div class="empty"></div>
+                    </td>
+                    <td>
+                        <div class="empty"></div>
+                    </td>
+                    <td>
+                        <div class="empty"></div>
+                    </td>
+                    <td>
+                        <div class="empty"></div>
+                    </td>
                 </tr>
-        </table>
+            </table>
+        </div>
+    </center>
+    <div class="tabsgen">
+        <form onsubmit="return gentabs()">
+            <label for="course">Course:</label>
+            <input type="text" name="course" id="course">
+            <label for="credits">Credits:</label>
+            <input type="number" name="credits" id="credits">
+            <input type="submit" hidden>
+        </form>
+        <div class="dragtabs"></div>
     </div>
 </section>
 

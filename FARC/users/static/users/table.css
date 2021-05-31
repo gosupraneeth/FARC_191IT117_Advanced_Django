@@ -15,3 +15,48 @@ table {
     display: inline-flex;
     margin-top: 3%;
 }
+.empty{
+    height: 24px;
+}
+#course{
+  width: 140px;
+  height: 10px;
+}
+#credits{
+  width: 60px;
+    height: 24px;
+    padding-left: 2px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    background-color: transparent;
+    box-sizing: border-box;
+    outline-color: aqua;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.tabsgen{
+  display: inline-flex;
+  margin-left: 3%;
+  margin-top: 8%;
+}
+.dragtabs{
+  margin-left: 3%;
+    display: inline-flex;
+    align-items: center;
+    flex-direction: row;
+}
+.drag{
+  margin: 2%;
+  padding: 2%;
+  box-shadow: rgb(0 0 0 / 15%) 8px 8px 30px;
+}
