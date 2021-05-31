@@ -1,0 +1,487 @@
+{% extends 'users/layout.html' %}
+
+{% load static %}
+{% block head %}
+<title>NITK PAGE</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+
+<link rel="stylesheet" href="{% static 'users/signin.css' %}">
+<link rel="stylesheet" href="{% static 'users/Assignment1_2.css' %}">
+<link rel="stylesheet" href="{% static 'users/Assignment1.css' %}">
+
+<style>
+    #search_extend:focus {
+        width: 250px;
+    }
+</style>
+<script>
+     window.onscroll = () => {
+            document.querySelectorAll('.js-slidein').forEach((div) => {
+                var bottomObject = div.offsetTop + div.offsetHeight / 3;
+                var bottomWindow = window.scrollY + window.innerHeight;
+                if (bottomObject < bottomWindow) {
+                    div.classList.add('js-slidein-visible');
+                }
+            });
+        };
+</script>
+{% endblock %}
+
+{% block body %}
+
+{% if logincard %}
+<style>
+    #login-card {
+        display: flex;
+    }
+</style>
+{% else %}
+<style>
+    #login-card {
+        display: none;
+    }
+</style>
+{% endif %}
+
+
+{% if signupcard %}
+<style>
+    #sign-card {
+        display: flex;
+    }
+</style>
+{% else %}
+<style>
+    #sign-card {
+        display: none;
+    }
+</style>
+{% endif %}
+
+
+
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="{% static 'users/nitklogo.png' %}"
+                    alt="" width="38" height="34" class="d-inline-block align-top">
+                NITK
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="#about">About</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link " href="{% url 'timetable' %}">TimeTable</a>
+                    </li>
+                    {% endif %}
+                </ul>
+                <form class="d-flex">
+                    {% if user.is_authenticated %}
+                        <a class="btn btn-danger me-2" type="button" href="{% url 'logout' %}"
+                            onclick="document.getElementById('login-card').style.display = 'flex'">LogOut</a>
+                    {% else %}
+                        <a class="btn btn-danger me-2" type="button" href="{% url 'login' %}">SignIn</a>
+                    {% endif %}
+                </form>
+                <div class="dropdown">
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                    </a>
+                
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        {% if user.is_authenticated %}
+                        <li style="top: 0;"><div  style="background-color: #212529; color: #fefefe; padding: 2%;text-align: center;">{{user.first_name}} {{user.last_name}}</div></li>
+                        <li><a class="dropdown-item" href="{% url 'logout' %}">logout</a></li>
+                        {% else %}
+                        <li><a class="dropdown-item" href="{% url 'login' %}">SignIn</a></li>
+                        {% endif %}
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+<section style="margin-top: 58px;">
+    <section class="tab1" id="home">
+        WELCOME TO NITK
+    </section>
+    
+    <!-- About section start -->
+    <section id="about">
+        <div class="news-container">
+            <div class="news">
+                <div class="news-column">
+                    <div class="news-block">
+    
+                        <!-- image with caption -->
+                        <figure>
+                            <img src="{% static 'users/mainbuild.jpg' %}" alt="Main block" height="auto" width="100%"
+                                class="news-img">
+                            <figcaption>Main Building</figcaption>
+                        </figure>
+                        <p style="line-height: 1.8; font-size: smaller; font-family:Georgia;">
+                            <!--Inline type of styling-->
+                            This is the mother of all buildings at NITK. Here lies the Administration office and all the
+                            officials’ office. From the
+                            Dean and the Director to the peon, everyone’s office can be found here. Visit this place for
+                            all official purposes. ( A
+                            word of warning, don’t enter this building in shorts or you are done for :P)
+    
+                            There are two seminar halls in this building namely - Main Seminar Hall (MSH) and the ISTE
+                            seminar hall. Regular
+                            seminars and (boring :P) quizzes take place here.
+    
+                            And then lastly there is a restaurant called Samudra Darshan on the top floor where you can
+                            have regular
+                            breakfast/lunch. The panoramic view from there is one not to be missed.
+    
+                            Often during exams, students can be found studying here up to late night. However with first
+                            years having their block
+                            timings, this isn't of much use to them!
+                        </p>
+                    </div>
+                    <div class="news-block js-slidein">
+    
+                        <!-- image with caption -->
+                        <figure>
+                            <img src="{% static 'users/hcc.jpg' %}" alt="HCC" height="auto" width="100%" class="news-img">
+                            <figcaption>Helth Care Center</figcaption>
+                        </figure>
+                        <p style="line-height: 1.8; font-size: smaller; font-family:Georgia;">The Health Care Centre
+                            also known as HCC is a
+                            unique facility. Free doctors + medicine! You really couldn’t ask for
+                            more. Many private colleges do not have such a facility. It is situated in the centre of the
+                            campus opposite the main
+                            grounds.
+    
+                            Plus, in case of emergency there is always a doctor in NITK Campus. NITK has recently
+                            inducted 2 24-hour ambulances for
+                            emergency. All this for just Rs. 815 a year. :P
+    
+                            Do you know that you will be covered under a medical insurance by HCC, NITK ? This is
+                            provided by Vidal Health
+                            Administrative Services which will provide you with a health card and a list of hospitals
+                            where you can avail this
+                            service. It's available throughout Karnataka in almost all major hospitals :P.</p>
+                    </div>
+                    <div class="news-block js-slidein">
+    
+                        <!-- image with caption -->
+                        <figure>
+                            <img src="{% static 'users/lib.webp' %}" alt="Indoor stadium" height="auto" width="100%"
+                                class="news-img">
+                            <figcaption>Library</figcaption>
+                        </figure>
+                        <p style="line-height: 1.8; font-size: smaller; font-family:Georgia;">The NITK Library is housed
+                            in a spacious two
+                            -storied independent building adjoining the Main building of the Institute
+                            on the Eastern side of the campus. The library, with a floor area of about 3,410 Sq mtrs.,
+                            is segregated into two wings.
+    
+                            Periodicals, journals and bound volumes are accessible in the Western wing, while books are
+                            housed in the Eastern wing.
+                            The library has an open access system and is organized into various sections. Newspapers in
+                            various languages can be
+                            found on the first floor, where there is a circular table to sit, relax and read..
+    
+                            The library has a whopping collection of 159752 books (give or take). Three reading halls
+                            which can accommodate a total
+                            of 600 students provide the peaceful and friendly atmosphere for absorbing the knowledge
+                            available through books. A
+                            digital library facility is also present. There is also an AC room to find respite from the
+                            sweltering heat of Surathkal
+                            and to study peacefully.</p>
+                    </div>
+                    <div class="news-block js-slidein">
+    
+                        <!-- image with caption -->
+                        <figure>
+                            <img src="{% static 'users/ccc.jpg' %}" alt="CCC" height="auto" width="100%" class="news-img">
+                            <figcaption>Central Computer Center</figcaption>
+                        </figure>
+                        <p style="line-height: 1.8; font-size: smaller; font-family:Georgia;">CCC (pronounced trip-see)
+                            occupies the ground
+                            and first floor of the building opposite to the Silver Jubilee Auditorium.
+                            CCC was established in 1995 as a service providing/supporting facility that augments to the
+                            computing facilities in the
+                            teaching departments.</p>
+                    </div>
+                </div>
+                <div class="news-column">
+                    <div class="news-block">
+    
+                        <!-- image with caption -->
+                        <figure>
+                            <img src="{% static 'users/cse.jpg' %}" alt="CS block" height="auto" width="100%"
+                                class="news-img">
+                            <figcaption>Computer Science Dept Block</figcaption>
+                        </figure>
+                        <p style="line-height: 1.8; font-size: smaller; font-family:Georgia;">The Department of Computer
+                            Science &
+                            Engineering was established in the year 1986. Since then, the department has held a
+                            position of pride in NITK. It has consistently fulfilled its role of producing Computer
+                            Engineers ready to meet the
+                            demands of the IT world. The department has always attracted the best of engineering
+                            aspirants from all over the
+                            country. It has a well qualified and experienced team of faculty. The Department offers
+                            B.Tech., M.Tech., M.Tech.(By
+                            Research) and Ph.D. courses in Computer Science and Engineering. The department has adequate
+                            facilities to support these
+                            teaching activities. Students of the department have access to sufficient high end computing
+                            facilities. The Department
+                            is also actively involved in various research activities. The facilities are adequate to
+                            cater to the needs of Research
+                            activities. The department has signed MoU with IBM, Intel, Leeds Metropolitan University and
+                            others, for academic
+                            collaborative projects.</p>
+                    </div>
+                    <div class="news-block js-slidein">
+    
+                        <!-- image with caption -->
+                        <figure>
+                            <img src="{% static 'users/IT.jpg' %}" alt="IT block" height="auto" width="100%"
+                                class="news-img">
+                            <figcaption>Information Technology Dept Block</figcaption>
+                        </figure>
+                        <p style="line-height: 1.8; font-size: smaller; font-family:Georgia;">Established in the year
+                            2000, the Department of
+                            Information Technology is the youngest among the 14 departments at NITK
+                            Surathkal. Since then, it has grown to be a center for excellence, innovation and research
+                            with dedicated faculty &
+                            staff, highly motivated students, state-of-the-art facilities and an innovative
+                            teaching-learning environment.Our students have consistently achieved excellent placements
+                            year after year and have demonstrated a high level of
+                            success at pursuing post-graduate and doctoral studies at leading universities world-wide
+                            (as per QS World University
+                            Rankings). Many NITK-IT graduates are currently at universities of repute like Massachusetts
+                            Institute of Technology,
+                            Carnegie Mellon University, Yale, Cornell, Columbia, Duke University, Purdue, Georgia Tech,
+                            and in the IITs and IIMs.</p>
+                    </div>
+                    <div class="news-block js-slidein">
+    
+                        <!-- image with caption -->
+                        <figure>
+                            <img src="{% static 'users/mech.jpg' %}" alt="Mechanical block" height="auto" width="100%"
+                                class="news-img">
+                            <figcaption>Mechanical Dept Block</figcaption>
+                        </figure>
+                        <p style="line-height: 1.8; font-size: smaller; font-family:Georgia;">Established in the year
+                            1960, the Department of
+                            Mechanical Engineering has traversed the path of knowledge dissemination
+                            and generation. The department feels proud about producing over 4500 Mechanical Engineering
+                            graduates to serve the
+                            Nation. Over these glorious years of its journey, it has carved a niche for itself in the
+                            key areas of teaching,
+                            research, consultancy, administration and community services. The Department of Mechanical
+                            Engineering gives priority to
+                            update the Mechanical Engineering education, primarily driven by the dynamics of
+                            technological advances and sustainable
+                            development and the curriculum is revised on a continuous basis with active involvement of
+                            industry, alumni, research
+                            organizations and other stakeholders. The department offers B.Tech, M.Tech and Ph.D.
+                            programmes and caters to more than
+                            600 B.Tech. students, 150 M.Tech. students and 90 Ph.D. Scholars.</p>
+                    </div>
+                </div>
+    
+                <div class="news-column">
+                    <div class="news-block">
+    
+                        <!-- image with caption -->
+                        <figure>
+                            <img src="{% static 'users/beach.jpg' %}" alt="Nitk Beach" height="auto" width="100%"
+                                class="news-img">
+                            <figcaption>NITK Beach</figcaption>
+                        </figure>
+                        <p style="line-height: 1.8; font-size: smaller; font-family:Georgia;">The beach is one of the
+                            major things that a
+                            fresher at NITK brags about all the time to his or her friends. After all,
+                            no other college in India has a private beach like ours!In the first couple of days, NITK
+                            holds a welcoming for all
+                            freshers on the beach, under the banner of
+                            'High Tea'. Nothing very 'high' about it, though; banana chips, a sweet, and some juice.
+                            Where's the tea?
+                            Your guess is as good as mine.
+    
+                            So what's the beach like? A cool sea breeze, sand between your toes, the lapping of the
+                            waves against you... it's a
+                            wonderful feeling. Naturally, the beach is a place to go and hang out with friends. It takes
+                            approximately fifteen to
+                            twenty minutes to get there from the boys' hostel, and not more than ten from the girls'.
+                            This walk to and from the
+                            beach is also a memorable part of the excursion.</p>
+                    </div>
+                    <div class="news-block js-slidein">
+    
+                        <!-- image with caption -->
+                        <figure>
+                            <img src="{% static 'users/lighthouse.jpg' %}" alt="Light House" height="auto" width="100%"
+                                class="news-img">
+                            <figcaption>Light House</figcaption>
+                        </figure>
+    
+                        <p style="line-height: 1.8; font-size: smaller; font-family:Georgia;">For those who tire of the
+                            beaten track, there
+                            is a lighthouse next to a temple, both situated quite close to the beach.
+                            But be careful, as the lighthouse is notorious for housing beehives. To reach these, one
+                            normally exits the eastern
+                            campus through the SBI Gate and walks towards Surathkal, crosses the road and uses the
+                            'temple road'.</p>
+                    </div>
+                    <div class="news-block js-slidein">
+    
+                        <!-- image with caption -->
+                        <figure>
+                            <img src="{% static 'users/gh.jpeg' %}" alt="SJA block" height="auto" width="100%"
+                                class="news-img">
+                            <figcaption>SJA Block</figcaption>
+                        </figure>
+    
+                        <p style="line-height: 1.8; font-size: smaller; font-family:Georgia;">SJA is a huge auditorium
+                            that regularly hosts
+                            major events of NITK. Formed to commemorate NITK's Silver Jubilee, it is
+                            the projection of NITK’s pride as one of the top engineering institutions in the country.
+    
+                            The SJA has a capacity of around 1000. It is fully air conditioned and also has a balcony
+                            housing. SJA is decked up for
+                            all major occasions and looks rather stunning during the nights. As a fresher one should not
+                            miss the Musical Nights and
+                            the Movies that are screened over here. Those are truly performances worth cherishing (and
+                            the AC worth sitting for!
+                            :p).
+    
+                            It basically serves as an auxiliary to the Students Activity Center (SAC). Noted musicians
+                            and vocalists regularly visit
+                            and give performances in this auditorium. Films are regularly screened by the Films’ Club
+                            and block timings are extended
+                            during the screening of these films!</p>
+                    </div>
+                    <div class="news-block js-slidein">
+    
+                        <!-- image with caption -->
+                        <figure>
+                            <img src="{% static 'users/sac.jpg' %}" alt="SJA block" height="auto" width="100%"
+                                class="news-img">
+                            <figcaption>SAC Block</figcaption>
+                        </figure>
+    
+                        <p style="line-height: 1.8; font-size: smaller; font-family:Georgia;">Students Activity Centre
+                            is the arena right
+                            beside the HCC and in front of the basketball court. It's quite a serene and
+                            calm place on a normal day. It is often used as a popular hangout place by most people
+                            during the evenings.
+    
+                            Come the fests and this place will be busy buzzing with students as all the major
+                            performances and events take place
+                            here. Every night during INCI and two of the nights during ENGINEER this place is filled
+                            with people waiting for the
+                            band events or the DJ Show.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+<!-- About section END -->
+
+
+<div id="login-card" class="modal">
+
+    <form action="{% url 'login' %}" class="modal-content animate" method="post">
+
+        {% csrf_token %}
+        <div class="imgcontainer">
+            <a class="btn me-2 active" href="{% url 'login' %}"
+                onclick="document.getElementById('login-card').style.display='flex',document.getElementById('sign-card').style.display='none'">LOGIN</a>
+            <a class="btn me-2 deactive" href="{% url 'signup' %}"
+                onclick="document.getElementById('login-card').style.display='none'">SIGN
+                UP</a>
+            <a href="{% url 'home' %}" style="text-decoration: none;"><span
+                    onclick="document.getElementById('login-card').style.display='none'" class="close"
+                    title="Close Modal">&times;</span></a>
+        </div>
+
+        <div class="container">
+            <label for="username"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="username" required>
+
+            <label for="password"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="password" required>
+
+            {% if message %}
+            <p style="color: red;">{{message}}</p>
+            {% endif %}
+            <div style="text-align: center; width: 100%; margin-top: 2%;">
+                <button type="submit" class="btn btn-outline-success" style="width: 150px;">Login</button>
+            </div>
+        </div>
+
+        <div class="container" style="background-color:#f1f1f1">
+            <a type="button" href="{% url 'home' %}"
+                onclick="document.getElementById('login-card').style.display='none'"
+                class="cancelbtn btn btn-danger">Cancel</a>
+            
+        </div>
+    </form>
+</div>
+
+
+<div id="sign-card" class="modal">
+
+    <form action="{% url 'signup' %}" class="modal-content animate" method="post">
+
+        {% csrf_token %}
+        <div class="imgcontainer">
+            <a class="btn me-2 deactive" href="{% url 'login' %}"
+                onclick="document.getElementById('sign-card').style.display='none'">LOGIN</a>
+            <a class="btn me-2 active" href="{% url 'signup' %}"
+                onclick="document.getElementById('sign-card').style.display='flex', document.getElementById('login-card').style.display='none'">SIGN
+                UP</a>
+            <a href="{% url 'home' %}" style="text-decoration: none;"><span onclick="document.getElementById('sign-card').style.display='none'" class="close"
+                title="Close Modal">&times;</span></a>
+        </div>
+
+        <div class="container">
+            {% for field in form %}
+            <p>
+                {{ field.label_tag }}<br>
+                {{ field }}
+                {% if field.help_text %}
+                <small style="color: grey">{{ field.help_text }}</small>
+                {% endif %}
+                {% for error in field.errors %}
+            <p style="color: red">{{ error }}</p>
+            {% endfor %}
+            </p>
+            {% endfor %}
+            <div style="text-align: center; width: 100%; margin-top: 2%;">
+                <button type="submit" class="btn btn-outline-success" style="width: 150px;">Login</button>
+            </div>
+        </div>
+
+        <div class="container" style="background-color:#f1f1f1">
+            <a href="{% url 'home' %}" onclick="document.getElementById('sign-card').style.display='none'"
+                class="btn btn-danger cancelbtn">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

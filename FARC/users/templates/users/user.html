@@ -1,0 +1,147 @@
+{% extends "users/layout.html" %}
+
+{% load static %}
+{% block head %}
+<title>User {{student.stud_name}}</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+    crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet'>
+
+<link rel="stylesheet" href="{% static 'users/signin.css' %}">
+<link rel="stylesheet" href="{% static 'users/Assignment1_2.css' %}">
+<link rel="stylesheet" href="{% static 'users/Assignment1.css' %}">
+<link rel="stylesheet" href="{% static 'users/table.css' %}">
+
+<style>
+    #search_extend:focus {
+        width: 250px;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src="{% static 'users/nitklogo.png' %}" alt="" width="38" height="34" class="d-inline-block align-top">
+            NITK
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link"  href="{% url 'home' %}">Home</a>
+                </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link active " aria-current="page" href="{% url 'timetable' %}">TimeTable</a>
+                </li>
+                {% endif %}
+            </ul>
+            <form class="d-flex">
+                {% if user.is_authenticated %}
+                <a class="btn btn-danger me-2" type="button" href="{% url 'logout' %}"
+                    onclick="document.getElementById('login-card').style.display = 'flex'">LogOut</a>
+                {% else %}
+                <a class="btn btn-danger me-2" type="button" href="{% url 'login' %}">SignIn</a>
+                {% endif %}
+            </form>
+            <div class="dropdown">
+                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                </a>
+
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    {% if user.is_authenticated %}
+                    <li style="top: 0;">
+                        <div style="background-color: #212529; color: #fefefe; padding: 2%;text-align: center;">
+                            {{user.first_name}} {{user.last_name}}</div>
+                    </li>
+                    <li><a class="dropdown-item" href="{% url 'logout' %}">logout</a></li>
+                    {% else %}
+                    <li><a class="dropdown-item" href="{% url 'login' %}">SignIn</a></li>
+                    {% endif %}
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+<section style="margin-top: 58px; text-align: center; align-items: center;">
+    <div id="table">
+        <table>
+                <tr>
+                    <th>Period1</th>
+                    <th>Period1</th>
+                    <th>Peroid</th>
+                    <th>Peroid</th>
+                    <th>Peroid</th>
+                    <th>Peroid</th>
+                    <th>Peroid</th>
+                    <th>Peroid</th>
+                </tr>
+                <tr>
+                    <td>Maths</td>
+                    <td>Maths</td>
+                    <td>Maths</td>
+                    <td>Maths</td>
+                    <td>Maths</td>
+                    <td>Maths</td>
+                    <td>Maths</td>
+                    <td>Maths</td>
+                </tr>
+                <tr>
+                    <td>Maths</td>
+                    <td>Maths</td>
+                    <td>Maths</td>
+                    <td>Maths</td>
+                    <td>Maths</td>
+                    <td>Maths</td>
+                    <td>Maths</td>
+                    <td>Maths</td>
+                </tr>
+                <tr>
+                    <td>Maths</td>
+                    <td>Maths</td>
+                    <td>Maths</td>
+                    <td>Maths</td>
+                    <td>Maths</td>
+                    <td>Maths</td>
+                    <td>Maths</td>
+                    <td>Maths</td>
+                </tr>
+                <tr>
+                    <td>Maths</td>
+                    <td>Maths</td>
+                    <td>Maths</td>
+                    <td>Maths</td>
+                    <td>Maths</td>
+                    <td>Maths</td>
+                    <td>Maths</td>
+                    <td>Maths</td>
+                </tr>
+                <tr>
+                    <td>Maths</td>
+                    <td>Maths</td>
+                    <td>Maths</td>
+                    <td>Maths</td>
+                    <td>Maths</td>
+                    <td>Maths</td>
+                    <td>Maths</td>
+                    <td>Maths</td>
+                </tr>
+        </table>
+    </div>
+</section>
+
+{% endblock %}

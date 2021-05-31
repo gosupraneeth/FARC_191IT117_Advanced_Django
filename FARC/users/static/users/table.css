@@ -1,0 +1,17 @@
+table, th, td {
+  border: 1px solid black;
+  padding: 7px 5px 7px 5px;
+}
+th, td{
+    background-color: #eee;
+}
+table {
+    width: 100%;
+  border-spacing: 15px;
+  border-collapse: separate;
+}
+#table{
+    width: 75%;
+    display: inline-flex;
+    margin-top: 3%;
+}
