@@ -1,14 +1,27 @@
-table, th, td {
-  border: 1px solid black;
+body{
+  background-color: #ECF0F1;
+}
+th, td {
   padding: 7px 5px 7px 5px;
 }
-th, td{
-    background-color: #eee;
-}
 table {
+    display: table;
+    border-collapse: separate;
+    box-sizing: border-box;
+    text-indent: initial;
+    border-spacing: 2px;
+    border-color: grey;
     width: 100%;
-  border-spacing: 15px;
-  border-collapse: separate;
+    font-size: 18px;
+    font-weight: 300;
+}
+#table caption {
+    text-align: center;
+    font-size: 1.5em;
+    padding: 0.35em;
+}
+table th{
+  color: #efefef;
 }
 #table{
     width: 75%;
@@ -16,15 +29,10 @@ table {
     margin-top: 3%;
 }
 .empty{
-    height: 24px;
-}
-#course{
-  width: 140px;
-  height: 10px;
+    height: 30px;
 }
 #credits{
-  width: 60px;
-    height: 24px;
+  width: 100%;
     padding-left: 2px;
     margin: 8px 0;
     display: inline-block;
@@ -49,14 +57,155 @@ input[type=number] {
   margin-left: 3%;
   margin-top: 8%;
 }
-.dragtabs{
-  margin-left: 3%;
+.dragtabs2{
+  width: 10%;
     display: inline-flex;
+    flex-wrap: wrap;
     align-items: center;
-    flex-direction: row;
+    flex-direction: column;
+}
+.dragtabs1{
+  width: 10%;
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-direction: column;
 }
 .drag{
+  border-radius: 4px;
   margin: 2%;
   padding: 2%;
   box-shadow: rgb(0 0 0 / 15%) 8px 8px 30px;
+  background-color: white;
+}
+td:nth-child(even) {
+  background-color: #a0ffb340;
+}
+td:nth-child(odd) {
+  background-color: #ffd7d7bf;
+}
+
+.trash {
+  background:#ff6873;
+  width: 55px;
+  height: 60px;
+  display: inline-block;
+  margin:0 auto;
+  box-shadow: 0 45px 55px 0.7px rgb(0 0 0 / 60%);
+  position: relative;
+  -webkit-border-bottom-right-radius: 6px;
+  -webkit-border-bottom-left-radius: 6px;
+  -moz-border-radius-bottomright: 6px;
+  -moz-border-radius-bottomleft: 6px;
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+.trash:after {
+  content: '';
+  position: absolute;
+  left: -99px;
+  right: 0;
+  bottom: -50px;
+  width: 300px;
+}
+.trash span {
+    position: absolute;
+    height: 12px;
+    background: #ff6873;
+    top: -15px;
+    left: -5px;
+    right: -5px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    transform: rotate(0deg);
+    transition: transform 250ms;
+    transform-origin: 19% 100%;
+}
+.trash span:after {
+    content: '';
+    position: absolute;
+    width: 27px;
+    height: 7px;
+    background: #ff6873;
+    top: -8px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    transform: rotate(0deg);
+    transition: transform 250ms;
+    transform-origin: 19% 100%;
+    left: 16px;
+}
+
+
+.trash i {
+    position: relative;
+    width: 5px;
+    height: 40px;
+    background: #dadada;
+    display: block;
+    margin: 14px auto;
+    border-radius: 5px;
+}
+.trash i:after {
+    content: '';
+    width: 5px;
+    height: 40px;
+    background: #dadada;
+    position: absolute;
+    left: -18px;
+    border-radius: 5px;
+}
+.trash i:before {
+    content: '';
+    width: 5px;
+    height: 40px;
+    background: #dadada;
+    position: absolute;
+    right: -18px;
+    border-radius: 5px;
+}
+
+.trash:hover span {
+  transform: rotate(-45deg);
+  transition: transform 250ms;
+}
+.container-input { 
+            background-color: #e4ebf5;
+            align-items: center;
+            width: 265px; 
+            height: 53px;
+            padding: 11px;
+            display: inline-flex;
+            margin-left: 29px;
+            border-radius: 8px;
+            box-shadow: 9px 9px 16px rgb(163,177,198,0.6), -9px -9px 16px    rgba(255,255,255, 0.7);
+            
+}
+
+.container-input:hover {
+                 
+              box-shadow: inset 9px 9px 16px rgb(163,177,198,0.6), inset -9px -9px 16px    rgba(255,255,255, 0.7);
+}
+
+.table-input {
+       height: 33px;
+       margin-left: 8px;
+       margin-top: 8px;
+       padding: 3px;
+       border-radius: 5px;
+       border: 0px;
+       transition: 0.4s ease-in-out;
+       
+}
+
+.table-input:hover {
+             transform: scale(1.05,1.05);
+}
+
+.table-input:focus {
+              color: #151515;
+              font-family: 'Josefin Sans', sans-serif;
+              font-size: 18px;
+              outline: none;
+              border-left: 5px solid #00A4FF;
 }

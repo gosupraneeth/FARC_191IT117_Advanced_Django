@@ -23,6 +23,45 @@
         width: 250px;
     }
 </style>
+<script>
+    function fade() {
+        var b = document.querySelector('body');
+        var op = 1;
+        id = setInterval(fadeout, 5);
+        function fadeout() {
+            if (op <= 0) {
+                clearInterval(id);
+                open_();
+            }
+            else {
+                op = op - 0.01;
+                b.style.opacity = op;
+            }
+        }
+        return false;
+    }
+    function open_() {
+        window.open('{% url "home" %}', '_self');
+    }
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', fadeout);
+    function fadeout() {
+        var b = document.querySelector('body');
+        var op = 0;
+        id = setInterval(fadeout, 5);
+        function fadeout() {
+            if (op >= 1) {
+                clearInterval(id);
+            }
+            else {
+                op = op + 0.003;
+                b.style.opacity = op;
+            }
+        }
+        return true;
+    }
+</script>
 
 {% endblock %}
 
@@ -41,7 +80,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link"  href="{% url 'home' %}">Home</a>
+                    <a class="nav-link"  href="{% url 'home' %}" onclick="return fade();">Home</a>
                 </li>
                 {% if user.is_authenticated %}
                 <li class="nav-item">
@@ -81,22 +120,24 @@
 </nav>
 <section style="margin-top: 58px; text-align: center; display: inline-flex; flex-direction: column; width: 100%;">
     <center>
+        <div class="dragtabs dragtabs1"></div>
         <div id="table" style="text-align: center;">
-            <table>
-                <tr>
-                    <th>Period</th>
-                    <th>Period</th>
-                    <th>Period</th>
-                    <th>Period</th>
-                    <th>Period</th>
-                    <th>Period</th>
-                    <th>Period</th>
-                    <th>Period</th>
-                    <th>Period</th>
+            <table style="box-shadow: 0 0 600px 1px rgb(0 0 0 / 30%);">
+                <caption>TimeTable</caption>
+                <tr style="background-color: #34495e;">
+                    <th>Day / Time</th>
+                    <th>9:45 - 10:15</th>
+                    <th>10:30 - 11:00</th>
+                    <th>11:15 - 11:45</th>
+                    <th>11:45 - 12:30</th>
+                    <th>1:15 - 1:45</th>
+                    <th>2:00 - 2:30</th>
+                    <th>2:45 - 3:15</th>
+                    <th>3:30 - 4:00</th>
                 </tr>
                 <tr>
-                    <th>
-                        <div class="empty"></div>
+                    <th style="background-color: darkcyan;">
+                        Monday
                     </th>
                     <td>
                         <div class="empty"></div>
@@ -124,8 +165,8 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>
-                        <div class="empty"></div>
+                    <th style="background-color: darkcyan;">
+                        Tuesday
                     </th>
                     <td>
                         <div class="empty"></div>
@@ -153,8 +194,8 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>
-                        <div class="empty"></div>
+                    <th style="background-color: darkcyan;">
+                        Wednesday
                     </th>
                     <td>
                         <div class="empty"></div>
@@ -182,8 +223,8 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>
-                        <div class="empty"></div>
+                    <th style="background-color: darkcyan;">
+                        Thursday
                     </th>
                     <td>
                         <div class="empty"></div>
@@ -211,8 +252,8 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>
-                        <div class="empty"></div>
+                    <th style="background-color: darkcyan;">
+                        Friday
                     </th>
                     <td>
                         <div class="empty"></div>
@@ -241,17 +282,24 @@
                 </tr>
             </table>
         </div>
+        <div class="dragtabs dragtabs2"></div>
     </center>
     <div class="tabsgen">
         <form onsubmit="return gentabs()">
-            <label for="course">Course:</label>
-            <input type="text" name="course" id="course">
-            <label for="credits">Credits:</label>
-            <input type="number" name="credits" id="credits">
+            <div class="container-input"><input class="table-input" type="text" name="course" id="course" placeholder="Course"></div>
+            <div class="container-input"><input class="table-input" type="number" name="credits" id="credits" placeholder="Credits"></div>
             <input type="submit" hidden>
         </form>
-        <div class="dragtabs"></div>
     </div>
+    <!--<div style="text-align: right;"><img class="dustbin" alt="Unix Time Converter" src="{% static 'users/trash.png' %}" width="60" height="80" style="margin-right: 10%;"></div>-->
+    <div style="text-align: right;">
+        <span class="trash" style="margin-right: 10%;">
+            <span></span>
+            <i></i>
+        </span>
+    </div>
+    <script
+        src="https://cpwebassets.codepen.io/assets/editor/iframe/iframeRefreshCSS-4793b73c6332f7f14a9b6bba5d5e62748e9d1bd0b5c52d7af6376f3d1c625d7e.js"></script>
 </section>
 
 {% endblock %}

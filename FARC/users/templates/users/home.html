@@ -30,6 +30,45 @@
             });
         };
 </script>
+<script>
+    function fade() {
+            var b = document.querySelector('body');
+            var op = 1;
+            id = setInterval(fadeout, 5);
+            function fadeout() {
+                if (op <= 0) {
+                    clearInterval(id);
+                    open_();
+                }
+                else {
+                    op = op - 0.01;
+                    b.style.opacity = op;
+                }
+            }
+            return false;
+        }
+        function open_() {
+            window.open('{% url "timetable" %}', '_self');
+        }
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', fadeout);
+    function fadeout() {
+        var b = document.querySelector('body');
+        var op = 0;
+        id = setInterval(fadeout, 5);
+        function fadeout() {
+            if (op >= 1) {
+                clearInterval(id);
+            }
+            else {
+                op = op + 0.003;
+                b.style.opacity = op;
+            }
+        }
+        return true;
+    }
+</script>
 {% endblock %}
 
 {% block body %}
@@ -87,7 +126,7 @@
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link " href="{% url 'timetable' %}">TimeTable</a>
+                        <a class="nav-link " href="{% url 'timetable' %}" onclick="return fade();">TimeTable</a>
                     </li>
                     {% endif %}
                 </ul>
