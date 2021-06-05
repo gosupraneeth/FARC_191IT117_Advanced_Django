@@ -74,6 +74,11 @@ function dragLeave() {
 function dragDrop() {
     console.log("drop");
     this.style.height = "fit-content";
+    if (this.innerHTML == "")
+        this.append(drag);
+    else{
+        return;
+    }
     if (window.getComputedStyle(this.parentElement, null).getPropertyValue('background-color') == "rgba(160, 255, 179, 0.25)"){
         drag.style.backgroundColor = "#a0ffb38f";
     }

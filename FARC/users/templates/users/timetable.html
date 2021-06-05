@@ -9,15 +9,13 @@
     integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
     crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
-    <link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+<link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet'>
 
 <link rel="stylesheet" href="{% static 'users/signin.css' %}">
 <link rel="stylesheet" href="{% static 'users/Assignment1_2.css' %}">
 <link rel="stylesheet" href="{% static 'users/Assignment1.css' %}">
 <link rel="stylesheet" href="{% static 'users/table.css' %}">
-<script src="{% static 'users/table.js' %}"></script>
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 
 <style>
     #search_extend:focus {
@@ -29,7 +27,7 @@
     function fade() {
         var b = document.querySelector('body');
         var op = 1;
-        id = setInterval(fadeout, 1);
+        id = setInterval(fadeout, 0.5);
         function fadeout() {
             if (op <= 0) {
                 clearInterval(id);
@@ -64,95 +62,59 @@
         return true;
     }
 </script>
-
 <script>
     function fill_data() {
-        var tr = document.querySelectorAll('tr');
-        var count = 0;
-        for (i = 1; i < tr.length; i++) {
-            var td = tr[i].querySelectorAll('td');
-            for (j = 0; j < td.length; j++) {
-                var c = document.createElement('div');
-                c.classList.add('drag');
-                c.setAttribute('draggable','true');
-                if (data[count] != 'None') {
-                    c.innerHTML = data[count];
+            var tr = document.querySelectorAll('tr');
+            var count = 0;
+            for (i = 1; i < tr.length; i++) {
+                var td = tr[i].querySelectorAll('td');
+                for (j = 0; j < td.length; j++) {
+                    var c = document.createElement('div');
+                    c.classList.add('drag');
+                    if(data[count]!='None'){
+                        c.innerHTML = data[count];
 
-                    td[j].style.height = "fit-content";
-                    if (window.getComputedStyle(td[j], null).getPropertyValue('background-color') == "rgba(160, 255, 179, 0.25)") {
-                        c.style.backgroundColor = "#a0ffb38f";
-                    }
-                    else {
-                        c.style.backgroundColor = "#ff7272";
-                    }
-                    empty = document.querySelectorAll(".empty");
-                    for (var item of empty) {
-                        if (item.innerHTML == "") {
-                            item.style.height = "30px";
+                        td[j].style.height = "fit-content";
+                        if (window.getComputedStyle(td[j], null).getPropertyValue('background-color') == "rgba(160, 255, 179, 0.25)") {
+                            c.style.backgroundColor = "#a0ffb38f";
                         }
                         else {
-                            item.style.height = "fit-content";
+                            c.style.backgroundColor = "#ff7272";
                         }
+                        empty = document.querySelectorAll(".empty");
+                        for (var item of empty) {
+                            if (item.innerHTML == "") {
+                                item.style.height = "30px";
+                            }
+                            else {
+                                item.style.height = "fit-content";
+                            }
+                        }
+                        td[j].querySelector('.empty').append(c);
                     }
-                    td[j].querySelector('.empty').append(c);
+                    count += 1;
                 }
-                count += 1;
             }
         }
-    }
     var data = `{{data}}`;
-    data = data.replaceAll(/&#x27;/g, '');
+    data = data.replaceAll(/&#x27;/g,'');
     data = data.replaceAll(/\([0-9]+,\s[0-9]\):\s/g, '');
-    data = data.replaceAll(/{/g, '');
-    data = data.replaceAll(/}/g, '');
+    data = data.replaceAll(/{/g,'');
+    data = data.replaceAll(/}/g,'');
     data = data.split(', ');
-    document.addEventListener('DOMContentLoaded', ()=>{
-        fill_data();
-        document.querySelectorAll(".drag").forEach((d) => {
-            d.addEventListener("dragstart", dragStart);
-            d.addEventListener("dragend", dragEnd);
-        });
-    });
+    document.addEventListener('DOMContentLoaded',fill_data);
 </script>
-
 <script>
-    function save(){
-        document.querySelector('.modal').style.display = "flex";
-        var data = {};
-        var tr = document.querySelectorAll('tr');
-        for(i=1;i<tr.length;i++){
-            var td = tr[i].querySelectorAll('td');
-            for(j=0;j<td.length;j++){
-                if(td[j].querySelector('.empty').childElementCount!=0){
-                   data[`(${i-1},${j})`] = td[j].querySelector('.empty>.drag').innerHTML;
-                }
-            }
+    function open_edit() {
+            window.open('{% url "edit" %}', '_self');
         }
-        $.ajax({
-            type: 'POST',
-            url: `{% url 'save' %}`,
-            // contentType: "application/json",
-             headers: {
-            //               'Content-Type':'application/json',
-                           'X-CSRFToken': "{{ csrf_token }}"
-                       },
-            dataType: "json",
-            data: {
-                senddata: JSON.stringify(data),
-            }
-        });
-        setTimeout(save_andnext,1500);
-    }
-    function save_andnext(){
-        window.open('{% url "timetable" %}', '_self');
-    }
 </script>
-
 
 {% endblock %}
 
 {% block body %}
-{% csrf_token %}
+
+
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">
@@ -166,7 +128,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link"  href="{% url 'home' %}" onclick="return fade();">Home</a>
+                    <a class="nav-link" href="{% url 'home' %}" onclick="return fade();">Home</a>
                 </li>
                 {% if user.is_authenticated %}
                 <li class="nav-item">
@@ -205,7 +167,9 @@
     </div>
 </nav>
 <section style="margin-top: 58px; text-align: center; display: inline-flex; flex-direction: column; width: 100%;">
-    <button class="btn btn-primary" onclick="save();">Save</button>
+    {% if is_cr %}
+    <button class="btn btn-danger" onclick="open_edit();">Edit</button>
+    {% endif %}
     <center>
         <div class="dragtabs dragtabs1"></div>
         <div id="table" style="text-align: center;">
@@ -371,32 +335,6 @@
         </div>
         <div class="dragtabs dragtabs2"></div>
     </center>
-    <div class="tabsgen">
-        <form onsubmit="return gentabs()">
-            <div class="container-input"><input class="table-input" type="text" name="course" id="course" placeholder="Course"></div>
-            <div class="container-input"><input class="table-input" type="number" name="credits" id="credits" placeholder="Credits"></div>
-            <input type="submit" hidden>
-        </form>
-    </div>
-    <!--<div style="text-align: right;"><img class="dustbin" alt="Unix Time Converter" src="{% static 'users/trash.png' %}" width="60" height="80" style="margin-right: 10%;"></div>-->
-    <div style="text-align: right;">
-        <span class="trash" style="margin-right: 10%;">
-            <span></span>
-            <i></i>
-        </span>
-    </div>
-    <script
-        src="https://cpwebassets.codepen.io/assets/editor/iframe/iframeRefreshCSS-4793b73c6332f7f14a9b6bba5d5e62748e9d1bd0b5c52d7af6376f3d1c625d7e.js"></script>
 </section>
-
-<div class="modal">
-    <div class="saving">
-        <span class="dots"></span>
-        <span class="dots"></span>
-        <span class="dots"></span>
-        <span class="dots"></span>
-        <span class="dots"></span>
-    </div>
-</div>
 
 {% endblock %}

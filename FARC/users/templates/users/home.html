@@ -34,7 +34,7 @@
     function fade() {
             var b = document.querySelector('body');
             var op = 1;
-            id = setInterval(fadeout, 5);
+            id = setInterval(fadeout, 0.5);
             function fadeout() {
                 if (op <= 0) {
                     clearInterval(id);
@@ -56,7 +56,7 @@
     function fadeout() {
         var b = document.querySelector('body');
         var op = 0;
-        id = setInterval(fadeout, 5);
+        id = setInterval(fadeout, 0.7);
         function fadeout() {
             if (op >= 1) {
                 clearInterval(id);

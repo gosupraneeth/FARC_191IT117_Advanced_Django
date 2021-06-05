@@ -4,6 +4,9 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
+from .models import Students,TimeTable
+import json
+from django.views.decorators.csrf import csrf_exempt
 
 
 # Create your views here.
@@ -16,6 +19,14 @@ def home(request):
 def loginindex(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("login"))
+    
+    name=request.user.username
+    try:
+        student=Students.objects.get(stud_id=name)
+    except:
+        student=Students(stud_id=request.user.username,stud_name=request.user.first_name +" " + request.user.last_name)
+        student.save()
+
     return render(request, "users/home.html")
 
 def login_view(request):
@@ -60,4 +71,40 @@ def logout_view(request):
     })
 
 def timetable(request):
-    return render(request,'users/user.html')
+    data = dict()
+    for i in range(5):
+        for j in range(8):
+            tt=TimeTable.objects.get(row=i,col=j)
+            data[(i,j)]=str(tt.period)
+    name=request.user.username
+    student=Students.objects.get(stud_id=name)
+    return render(request,'users/timetable.html',{
+        "data":data,
+        "is_cr": student.is_cr
+    })
+
+def edit(request):
+    data = dict()
+    for i in range(5):
+        for j in range(8):
+            tt=TimeTable.objects.get(row=i,col=j)
+            data[(i,j)]=str(tt.period)
+    return render(request,'users/user.html',{
+        "data":data,
+    })
+
+@csrf_exempt
+def save(request):
+    if request.is_ajax():
+        if request.method == 'POST':
+            data = request.POST.get('senddata')
+            data = json.loads(data)
+            tt= TimeTable.objects.all()
+            for t in tt:
+                t.period=None
+                t.save()
+            for key,value in data.items():
+                tt = TimeTable.objects.get(row=int(key[1]),col=int(key[3]))
+                tt.period = value
+                tt.save()
+    return redirect('timetable')
