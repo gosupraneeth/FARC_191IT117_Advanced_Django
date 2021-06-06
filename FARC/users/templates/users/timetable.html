@@ -166,15 +166,14 @@
         </div>
     </div>
 </nav>
-<section style="margin-top: 58px; text-align: center; display: inline-flex; flex-direction: column; width: 100%;">
+<section style="margin-top: 58px; text-align: center; display: inline-flex; flex-direction: column; width: 100%;height: 100%;">
     {% if is_cr %}
     <button class="btn btn-danger" onclick="open_edit();">Edit</button>
     {% endif %}
-    <center>
-        <div class="dragtabs dragtabs1"></div>
+    <center >
         <div id="table" style="text-align: center;">
-            <table style="box-shadow: 0 0 600px 1px rgb(0 0 0 / 30%);">
-                <caption>TimeTable</caption>
+            <table style="box-shadow: 0 0 600px 1px rgb(0 0 0 / 30%);min-width: 700px;">
+                <caption style="caption-side: top;">TimeTable</caption>
                 <tr style="background-color: #34495e;">
                     <th>Day / Time</th>
                     <th>9:45 - 10:15</th>
@@ -333,7 +332,6 @@
                 </tr>
             </table>
         </div>
-        <div class="dragtabs dragtabs2"></div>
     </center>
 </section>
 

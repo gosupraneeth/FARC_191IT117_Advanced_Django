@@ -24,9 +24,14 @@ table th{
   color: #efefef;
 }
 #table{
-    width: 75%;
+    width: 100%;
+    height: 100%;
     display: inline-flex;
-    margin-top: 3%;
+    text-align: center;
+    align-items: center;
+    align-content: center;
+    padding: 9%;
+    overflow: scroll;
 }
 .empty{
     height: 30px;
@@ -58,15 +63,25 @@ input[type=number] {
   margin-top: 8%;
 }
 .dragtabs2{
-  width: 10%;
     display: inline-flex;
     flex-wrap: wrap;
     align-items: center;
     flex-direction: column;
 }
 .dragtabs1{
-  width: 10%;
     display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-direction: column;
+}
+.dragtabs4{
+    display: none;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-direction: column;
+}
+.dragtabs3{
+    display: none;
     flex-wrap: wrap;
     align-items: center;
     flex-direction: column;
@@ -85,6 +100,13 @@ td:nth-child(odd) {
   background-color: #ffd7d7bf;
 }
 
+center{
+  display: inline-flex; 
+  width: 100%;
+  height: 100%; 
+  text-align: center;
+  align-content: center;
+}
 .trash {
   background:#ff6873;
   width: 55px;
@@ -272,4 +294,31 @@ td:nth-child(odd) {
   background-color: rgb(0,0,0);
   background-color: rgba(0,0,0,0.6);
   padding-top: 60px;
+}
+
+@media (max-width:950px) {
+  #table{
+    padding: 6%;
+  }
+}
+@media (max-width:800px) {
+    center{
+      flex-direction: column;
+      align-items: center;
+    }
+    .container-input{
+      margin: 2%;
+    }
+    .dragtabs1{
+      display: none;
+    }
+    .dragtabs2{
+      display: none;
+    }
+    .dragtabs3{
+      display: inline-flex;
+    }
+    .dragtabs4{
+      display: inline-flex;
+    }
 }

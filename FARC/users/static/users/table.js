@@ -48,7 +48,9 @@ function dragEnd() {
     var div2 = document.querySelector('.dragtabs2');
     if(div1.childElementCount==0 && div2.childElementCount==0){
         div1.innerHTML = '';
+        div1.style.width='0';
         div2.innerHTML = '';
+        div2.style.width = '0';
     }
     //this.style.backgroundColor = "#a0ffb38f";
 }
@@ -122,6 +124,15 @@ function trashdragLeave() {
 function trashdragDrop() {
     this.append(drag);
     this.innerHTML = `<span></span><i></i>`;
+    empty = document.querySelectorAll(".empty");
+    for (var item of empty) {
+        if (item.innerHTML == "") {
+            item.style.height = "30px";
+        }
+        else {
+            item.style.height = "fit-content";
+        }
+    }
 }
 
 
@@ -136,8 +147,16 @@ function gentabs() {
     var course = document.querySelector('#course').value;
     var credits = document.querySelector('#credits').value;
     if(course!='' && credits!='' && parseInt(credits)>0){
-        var div1 = document.querySelector('.dragtabs1');
-        var div2 = document.querySelector('.dragtabs2');
+        if(window.innerWidth<800){
+            var div1 = document.querySelector('.dragtabs3');
+            var div2 = document.querySelector('.dragtabs4');
+        }
+        else{
+            var div1 = document.querySelector('.dragtabs1');
+            var div2 = document.querySelector('.dragtabs2');
+        }
+        div1.style.width = "20%";
+        div2.style.width = "20%";
         div1.innerHTML = 'Courses';
         div2.innerHTML = 'Courses';
         for (i = 0; i < credits; i++) {

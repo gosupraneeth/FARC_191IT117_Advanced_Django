@@ -178,6 +178,8 @@ nav{
 }
 
 .tab1{
+    height: 95vh;
+    align-items: center;
     display: flex;
     width: 100%;
     padding-top: 150px;
@@ -438,11 +440,6 @@ footer{
     margin: auto;
 }
 
-@media(max-width: 486px) {
-  .tab1{
-      font-size: 30px;
-  }
-}
 
 @media(max-width:750px){
     .nav-div{
@@ -504,4 +501,13 @@ footer{
 }
 .d-flex{
     margin-right: 2%;
+}
+
+@media (max-width:425px) {
+    .news{
+        margin-left: 5%;
+        margin-right: 5%;
+        font-size: large;
+    }
+    
 }
