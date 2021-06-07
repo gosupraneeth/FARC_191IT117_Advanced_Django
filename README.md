@@ -20,8 +20,9 @@ After running the above command, open the [http://127.0.0.1:8000/](http://127.0.
 ## Features
 ### Implemented
 - The application is in a complete MVC format.
-- The user can signup and sign in into his account.
+- The user can signup and sign in to his account.
 - The home page contains a few details about the NITK campus, which is an additional feature for this task.
+- It also has the carousel, which slides some images. We can consider it as a gallery.
 - User can see the timetable only if the user logs into his account.
 - There are two kinds of users one is CR, and the others are ordinary students.
 - Only CR can see the edit option to edit the timetable others can only view the timetable.
@@ -40,3 +41,12 @@ After running the above command, open the [http://127.0.0.1:8000/](http://127.0.
 - At present, the timetable is fixed with 5x8 slots, making it dynamic by giving the options like increasing or decreasing the rows or columns size is the future work left.
 
 >Used Boostrap and Google fonts for better decoration.
+
+## Screenshots
+- The home page of the application looks like this<br/><br/>
+>![ss1](https://user-images.githubusercontent.com/59569250/121029897-9e680000-c7c6-11eb-9ce1-c1ca4d97edba.png)
+>Note: You can see the timetable option in navbar after signin.
+
+- The timetable looks like this
+>![SS2](https://user-images.githubusercontent.com/59569250/121030892-83e25680-c7c7-11eb-8e23-d23aae2521a2.png)
+
