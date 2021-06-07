@@ -72,6 +72,8 @@ def logout_view(request):
 
 def timetable(request):
     data = dict()
+    days = ['Monday','Tuesday','Wednesday','Thursday','Friday']
+    time = ['Day / Time','9:45 - 10:15','10:30 - 11:00','11:15 - 11:45','11:45 - 12:30','1:15 - 1:45','2:00 - 2:30','2:45 - 3:15','3:30 - 4:00',]
     for i in range(5):
         for j in range(8):
             tt=TimeTable.objects.get(row=i,col=j)
@@ -80,18 +82,28 @@ def timetable(request):
     student=Students.objects.get(stud_id=name)
     return render(request,'users/timetable.html',{
         "data":data,
-        "is_cr": student.is_cr
+        "is_cr": student.is_cr,
+        "days" : days,
+        "time" :time,
     })
 
 def edit(request):
-    data = dict()
-    for i in range(5):
-        for j in range(8):
-            tt=TimeTable.objects.get(row=i,col=j)
-            data[(i,j)]=str(tt.period)
-    return render(request,'users/user.html',{
-        "data":data,
-    })
+    name=request.user.username
+    student=Students.objects.get(stud_id=name)
+    days = ['Monday','Tuesday','Wednesday','Thursday','Friday']
+    time = ['Day / Time','9:45 - 10:15','10:30 - 11:00','11:15 - 11:45','11:45 - 12:30','1:15 - 1:45','2:00 - 2:30','2:45 - 3:15','3:30 - 4:00',]
+    if(student.is_cr):
+        data = dict()
+        for i in range(5):
+            for j in range(8):
+                tt=TimeTable.objects.get(row=i,col=j)
+                data[(i,j)]=str(tt.period)
+        return render(request,'users/user.html',{
+            "data":data,
+            "days" : days,
+            "time" : time,
+        })
+    return redirect('timetable')
 
 @csrf_exempt
 def save(request):

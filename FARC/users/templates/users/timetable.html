@@ -171,168 +171,31 @@
     {% if is_cr %}
     <button class="btn btn-danger" onclick="open_edit();">Edit</button>
     {% endif %}
-    <center >
+    <center>
+        {% with ''|center:8 as range %}
         <div id="table" style="text-align: center;">
             <table style="box-shadow: 0 0 600px 1px rgb(0 0 0 / 30%);min-width: 700px;">
                 <caption style="font-family: 'Charmonman'; caption-side: top;">NITK IT TimeTable</caption>
                 <tr style="background-color: #34495e;">
-                    <th>Day / Time</th>
-                    <th>9:45 - 10:15</th>
-                    <th>10:30 - 11:00</th>
-                    <th>11:15 - 11:45</th>
-                    <th>11:45 - 12:30</th>
-                    <th>1:15 - 1:45</th>
-                    <th>2:00 - 2:30</th>
-                    <th>2:45 - 3:15</th>
-                    <th>3:30 - 4:00</th>
+                    {% for t in time %}
+                    <th>{{t}}</th>
+                    {% endfor %}
                 </tr>
+                {% for day in days %}
                 <tr>
                     <th style="background-color: darkcyan;">
-                        Monday
+                        {{day}}
                     </th>
+                    {% for _ in range%}
                     <td>
                         <div class="empty"></div>
                     </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
+                    {% endfor %}
                 </tr>
-                <tr>
-                    <th style="background-color: darkcyan;">
-                        Tuesday
-                    </th>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                </tr>
-                <tr>
-                    <th style="background-color: darkcyan;">
-                        Wednesday
-                    </th>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                </tr>
-                <tr>
-                    <th style="background-color: darkcyan;">
-                        Thursday
-                    </th>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                </tr>
-                <tr>
-                    <th style="background-color: darkcyan;">
-                        Friday
-                    </th>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                </tr>
+                {% endfor %}
             </table>
         </div>
+        {% endwith %}
     </center>
 </section>
 

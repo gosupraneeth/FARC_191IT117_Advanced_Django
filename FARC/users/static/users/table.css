@@ -33,7 +33,7 @@ table th{
     text-align: center;
     align-items: center;
     align-content: center;
-    padding: 9%;
+    padding: 5% 9% 9% 9%;
     overflow: scroll;
 }
 .empty{

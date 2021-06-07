@@ -206,173 +206,43 @@
 </nav>
 <section style="margin-top: 58px; text-align: center; display: inline-flex; flex-direction: column; width: 100%;height: 100%;">
     <button class="btn btn-primary" onclick="save();">Save</button>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <div style="text-align: left;width: fit-content;display: inline-block;">
+            <strong>Create :</strong> To get new slots fill the course name and credits and press enter. <br>
+            <strong>Arrange :</strong> To arrange the slots drag & place them to respective cells. <br>
+            <strong>Delete :</strong> To delete the slots drag them to trash bin.
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
     <center>
+        {% with ''|center:8 as range %}
         <div class="dragtabs dragtabs3"></div>
         <div id="table" style="text-align: center;">
             <div class="dragtabs dragtabs1"></div>
             <table style="box-shadow: 0 0 600px 1px rgb(0 0 0 / 30%);min-width: 700px;">
                 <caption style="font-family: 'Charmonman'; caption-side: top;">NITK IT TimeTable</caption>
                 <tr style="background-color: #34495e;">
-                    <th>Day / Time</th>
-                    <th>9:45 - 10:15</th>
-                    <th>10:30 - 11:00</th>
-                    <th>11:15 - 11:45</th>
-                    <th>11:45 - 12:30</th>
-                    <th>1:15 - 1:45</th>
-                    <th>2:00 - 2:30</th>
-                    <th>2:45 - 3:15</th>
-                    <th>3:30 - 4:00</th>
+                    {% for t in time %}
+                    <th>{{t}}</th>
+                    {% endfor %}
                 </tr>
+                {% for day in days %}
                 <tr>
                     <th style="background-color: darkcyan;">
-                        Monday
+                        {{day}}
                     </th>
+                    {% for _ in range%}
                     <td>
                         <div class="empty"></div>
                     </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
+                    {% endfor %}
                 </tr>
-                <tr>
-                    <th style="background-color: darkcyan;">
-                        Tuesday
-                    </th>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                </tr>
-                <tr>
-                    <th style="background-color: darkcyan;">
-                        Wednesday
-                    </th>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                </tr>
-                <tr>
-                    <th style="background-color: darkcyan;">
-                        Thursday
-                    </th>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                </tr>
-                <tr>
-                    <th style="background-color: darkcyan;">
-                        Friday
-                    </th>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                    <td>
-                        <div class="empty"></div>
-                    </td>
-                </tr>
+                {% endfor %}
             </table>
             <div class="dragtabs dragtabs2"></div>
         </div>
         <div class="dragtabs dragtabs4"></div>
-        
+        {% endwith %}
     </center>
     <div class="tabsgen">
         <form onsubmit="return gentabs()">
