@@ -17,11 +17,14 @@ table {
 }
 #table caption {
     text-align: center;
-    font-size: 1.5em;
+    font-size: 2.5em;
     padding: 0.35em;
+    font-weight: 900;
+    letter-spacing: 1.5px;
 }
 table th{
   color: #efefef;
+  font-family: 'Charmonman';
 }
 #table{
     width: 100%;
@@ -92,6 +95,7 @@ input[type=number] {
   padding: 2%;
   box-shadow: rgb(0 0 0 / 15%) 8px 8px 30px;
   background-color: white;
+  font-family: 'Montserrat';
 }
 td:nth-child(even) {
   background-color: #a0ffb340;
