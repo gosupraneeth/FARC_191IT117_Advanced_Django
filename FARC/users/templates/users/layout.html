@@ -1,5 +1,7 @@
+<!--This is the layout file which contains common html-->
 <!DOCTYPE html>
 <html lang="en">
+{% load static %}
 
 <head>
     <style>
@@ -18,16 +20,30 @@
             height: 100%;
         }
     </style>
+    <!--Additional Links-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    
+    <link rel="stylesheet" href="{% static 'users/signin.css' %}">
+    <link rel="stylesheet" href="{% static 'users/home2.css' %}">
+    <link rel="stylesheet" href="{% static 'users/home1.css' %}">
     <link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Charmonman' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Tangerine' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--Head block declaration-->
     {% block head %}
     {% endblock %}
 </head>
 
 <body>
+    <!--Body block declaration-->
     {% block body %}
     {% endblock %}
 </body>

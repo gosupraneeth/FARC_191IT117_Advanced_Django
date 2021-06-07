@@ -1,21 +1,13 @@
+<!--Extending the layout.html-->
 {% extends "users/layout.html" %}
 
+<!--Loading the static files-->
 {% load static %}
+
+<!--Head part-->
 {% block head %}
-<title>User {{student.stud_name}}</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
-    crossorigin="anonymous"></script>
+<title>{{student.stud_name}} TimeTable</title>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
-<link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet'>
-<link href='https://fonts.googleapis.com/css?family=Charmonman' rel='stylesheet'>
-
-<link rel="stylesheet" href="{% static 'users/signin.css' %}">
-<link rel="stylesheet" href="{% static 'users/home2.css' %}">
-<link rel="stylesheet" href="{% static 'users/home1.css' %}">
 <link rel="stylesheet" href="{% static 'users/table.css' %}">
 
 <style>
@@ -24,6 +16,7 @@
     }
 </style>
 
+<!--Addtional functions-->
 <script>
     function fade() {
         var b = document.querySelector('body');
@@ -63,6 +56,8 @@
         return true;
     }
 </script>
+
+<!--function for loading the data to tables-->
 <script>
     function fill_data() {
             var tr = document.querySelectorAll('tr');
@@ -115,7 +110,7 @@
 
 {% block body %}
 
-
+<!--Navr bar start-->
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">
@@ -167,6 +162,9 @@
         </div>
     </div>
 </nav>
+<!--nav bar end-->
+
+<!--Table-->
 <section style="margin-top: 58px; text-align: center; display: inline-flex; flex-direction: column; width: 100%;height: 100%;">
     {% if is_cr %}
     <button class="btn btn-danger" onclick="open_edit();">Edit</button>
@@ -198,5 +196,5 @@
         {% endwith %}
     </center>
 </section>
-
+<!--Table end-->
 {% endblock %}

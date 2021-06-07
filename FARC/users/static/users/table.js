@@ -1,11 +1,16 @@
+//file for editing the table
 var empty;
 var drag;
+
+//function calls and adds events when drag event happens
 function addingevent() {
     document.querySelectorAll(".drag").forEach((d) => {
         d.addEventListener("dragstart", dragStart);
         d.addEventListener("dragend", dragEnd);
     });
 }
+
+//adding events when drag stars
 document.addEventListener('dragstart', () => {
     document.querySelectorAll(".drag").forEach((d) => {
         d.addEventListener("dragstart", dragStart);
@@ -13,6 +18,7 @@ document.addEventListener('dragstart', () => {
     });
 });
 
+//adding events when document loaded
 document.addEventListener('DOMContentLoaded', () => {
     empty = document.querySelectorAll(".empty");
     dustbin = document.querySelectorAll(".trash");
@@ -34,14 +40,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// requestAnimationFrame - подменяет стиль на прозрачный. работает с частотой 60fps
+//calls the function when drag starts
 function dragStart(event) {
     console.log("start");
     drag = this;
-    //this.style.backgroundColor = "white";
-    //requestAnimationFrame(() => (this.style.backgroundColor = "transparent"), 0);
 }
 
+//calls the function when drag ends
 function dragEnd() {
     console.log("end");
     var div1 = document.querySelector('.dragtabs1');
@@ -52,27 +57,24 @@ function dragEnd() {
         div2.innerHTML = '';
         div2.style.width = '0';
     }
-    //this.style.backgroundColor = "#a0ffb38f";
 }
 
-
-// dragOver срабатывает всё время
-// preventDefault - обязательно! Сбрасывает стандартные обработчики браузера
 function dragOver() {
     event.preventDefault();
 }
 
-// dragEnter срабатывает над объектом один раз
+//calls the function when drag on the empty cell
 function dragEnter() {
     //this.style.backgroundColor = "gray";
 }
 
-// dragLeave срабатывает после ухода
+
+//calls the function when drag is left
 function dragLeave() {
     //this.style.height = '30px';
 }
 
-// drop срабатывает после того, как перетаскиваемый объект опустится на блок
+//calls the function when drag is dropin
 function dragDrop() {
     console.log("drop");
     this.style.height = "fit-content";
@@ -106,21 +108,21 @@ function trashdragOver() {
     event.preventDefault();
 }
 
-// dragEnter срабатывает над объектом один раз
+
 function trashdragEnter() {
     //this.style.backgroundColor = "gray";
     this.querySelector('span').style.transform = "rotate(-45deg)";
     this.querySelector('span').style.transition = "transform 250ms";
 }
 
-// dragLeave срабатывает после ухода
+
 function trashdragLeave() {
     this.querySelector('span').style.transform = "";
     this.querySelector('span').style.transition = "";
     //this.style.backgroundColor = "#eee";
 }
 
-// drop срабатывает после того, как перетаскиваемый объект опустится на блок
+
 function trashdragDrop() {
     this.append(drag);
     this.innerHTML = `<span></span><i></i>`;
@@ -136,13 +138,7 @@ function trashdragDrop() {
 }
 
 
-
-
-function formtable() {
-    var rows = document.getElementById('row').value;
-    var cols = document.getElementById('column').value;
-
-}
+//generates the new cell tabs
 function gentabs() {
     var course = document.querySelector('#course').value;
     var credits = document.querySelector('#credits').value;

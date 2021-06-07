@@ -1,19 +1,15 @@
+<!--Extending the laout.html-->
 {% extends 'users/layout.html' %}
 
+<!--Loading the files in the static folder-->
 {% load static %}
+
+<!-- Head part-->
 {% block head %}
+<!--Title of the page-->
 <title>NITK PAGE</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
-        crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
 
-<link rel="stylesheet" href="{% static 'users/signin.css' %}">
-<link rel="stylesheet" href="{% static 'users/home2.css' %}">
-<link rel="stylesheet" href="{% static 'users/home1.css' %}">
-
+<!--Additional styling-->
 <style>
     #search_extend:focus {
         width: 250px;
@@ -23,6 +19,8 @@
         font-size: 30px;
     }
 </style>
+
+<!--Additional js-->
 <script>
      window.onscroll = () => {
             document.querySelectorAll('.js-slidein').forEach((div) => {
@@ -77,6 +75,8 @@
 
 {% block body %}
 
+<!--For login and signup cards-->
+
 {% if logincard %}
 <style>
     #login-card {
@@ -105,9 +105,10 @@
     }
 </style>
 {% endif %}
+<!--End-->
 
 
-
+<!--Nav Bar-->
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
@@ -164,7 +165,9 @@
             </div>
         </div>
     </nav>
+<!--Nav bar ends-->
 
+<!--Content section-->
 <section style="margin-top: 58px;">
     <section class="tab1" id="home">
         WELCOME TO NITK
@@ -446,6 +449,9 @@
             </div>
         </div>
     </section>
+    <!-- About section END -->
+
+    <!--Slide show section-->
     <div id="gallery" class="h-c-grid__col h-c-grid__col-s--12 h-c-grid__col-s--offset-0">
         <div class="feat-vid">
             <div class="feat-vid-chrome"><img src="{% static 'users/laptop_mask.png' %}" alt=""></div> 
@@ -477,14 +483,15 @@
                 </div>
             </div>
         </div>
-        <!-- carousel row -->
     </div>
+    <!--Slide show end-->
 
     
 </section>
-<!-- About section END -->
+<!-- content section END -->
 
 
+<!--Login card-->
 <div id="login-card" class="modal">
 
     <form action="{% url 'login' %}" class="modal-content animate" method="post">
@@ -524,8 +531,10 @@
         </div>
     </form>
 </div>
+<!--login card end-->
 
 
+<!--Signup card-->
 <div id="sign-card" class="modal">
 
     <form action="{% url 'signup' %}" class="modal-content animate" method="post">
@@ -565,4 +574,5 @@
         </div>
     </form>
 </div>
+<!--Signup card end-->
 {% endblock %}

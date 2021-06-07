@@ -1,19 +1,14 @@
+<!--Extends the layout.html-->
 {% extends "users/layout.html" %}
 
+<!--loads the static files-->
 {% load static %}
+
+<!--Head part-->
 {% block head %}
-<title>User {{student.stud_name}}</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
-    crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+<title>TimeTable</title>
 
-<link rel="stylesheet" href="{% static 'users/signin.css' %}">
-<link rel="stylesheet" href="{% static 'users/home2.css' %}">
-<link rel="stylesheet" href="{% static 'users/home1.css' %}">
 <link rel="stylesheet" href="{% static 'users/table.css' %}">
 <script src="{% static 'users/table.js' %}"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
@@ -25,6 +20,7 @@
      
 </style>
 
+<!--Function to fadein while navigating-->
 <script>
     function fade() {
         var b = document.querySelector('body');
@@ -46,6 +42,8 @@
         window.open('{% url "home" %}', '_self');
     }
 </script>
+
+<!--Function to fadeout while navigating-->
 <script>
     document.addEventListener('DOMContentLoaded', fadeout);
     function fadeout() {
@@ -65,6 +63,7 @@
     }
 </script>
 
+<!--Function to fill the table with the data rendered-->
 <script>
     function fill_data() {
         var tr = document.querySelectorAll('tr');
@@ -115,6 +114,7 @@
     });
 </script>
 
+<!--function to save the changes did to the table-->
 <script>
     function save(){
         document.querySelector('.modal').style.display = "flex";
@@ -151,8 +151,12 @@
 
 {% endblock %}
 
+<!--Body block-->
 {% block body %}
+<!--token for post method-->
 {% csrf_token %}
+
+<!--nave bar start-->
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">
@@ -204,8 +208,12 @@
         </div>
     </div>
 </nav>
+<!--navbar end-->
+
+
 <section style="margin-top: 58px; text-align: center; display: inline-flex; flex-direction: column; width: 100%;height: 100%;">
     <button class="btn btn-primary" onclick="save();">Save</button>
+    <!--Instructions warning-->
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
         <div style="text-align: left;width: fit-content;display: inline-block;">
             <strong>Create :</strong> To get new slots fill the course name and credits and press enter. <br>
@@ -214,6 +222,7 @@
         </div>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
+    <!--Table-->
     <center>
         {% with ''|center:8 as range %}
         <div class="dragtabs dragtabs3"></div>
@@ -244,6 +253,9 @@
         <div class="dragtabs dragtabs4"></div>
         {% endwith %}
     </center>
+    <!--Table end-->
+
+    <!--Input tabs-->
     <div class="tabsgen">
         <form onsubmit="return gentabs()">
             <div class="container-input"><input class="table-input" type="text" name="course" id="course" placeholder="Course"></div>
@@ -251,13 +263,15 @@
             <input type="submit" hidden>
         </form>
     </div>
-    <!--<div style="text-align: right;"><img class="dustbin" alt="Unix Time Converter" src="{% static 'users/trash.png' %}" width="60" height="80" style="margin-right: 10%;"></div>-->
+    <!--trash bin-->
     <div style="text-align: right; padding-bottom: 3%;margin-top: auto;">
         <span class="trash" style="margin-right: 10%;">
             <span></span>
             <i></i>
         </span>
     </div>
+    <!------>
+
     <script
         src="https://cpwebassets.codepen.io/assets/editor/iframe/iframeRefreshCSS-4793b73c6332f7f14a9b6bba5d5e62748e9d1bd0b5c52d7af6376f3d1c625d7e.js"></script>
 </section>
